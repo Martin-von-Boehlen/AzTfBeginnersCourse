@@ -1,0 +1,3 @@
+Please follow this excellent tutorial
+
+https://learn.hashicorp.com/tutorials/terraform/infrastructure-as-code?in=terraform/azure-get-started
