@@ -16,5 +16,5 @@ All files of this Project are subject to the license in 'Creative Commons — Li
 Human readable blurb in 'Creative Commons — Attribution-NonCommercial-ShareAlike 4.0 International — CC BY-NC-SA 4.0.pdf'
 Everybody reading the blurb thereby agrees to the disclaimer 'Creative Commons — Disclaimer — CC BY-NC-SA 4.0.png'
 
-Lawyers must not read the blurb.
+Lawyers cannot read the blurb.
 
