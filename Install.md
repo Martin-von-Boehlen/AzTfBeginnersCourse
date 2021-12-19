@@ -9,7 +9,7 @@ Please find detailed configuration instructions in Documentation/004_Configurati
  + az        - The Azure command line interface				- https://docs.microsoft.com/en-us/cli/azure/install-azure-cli
  + bash      - The Bourne again shell					- https://en.wikipedia.org/wiki/Bash_(Unix_shell)
  + git       - The distributed version control system			- https://git-scm.com
- + terrafrom - The infrastructure as code system by HashiCorp 		- https://www.terraform.io/downloads
+ + terraform - The infrastructure as code system by HashiCorp 		- https://www.terraform.io/downloads
 
 ## Platforms
 
