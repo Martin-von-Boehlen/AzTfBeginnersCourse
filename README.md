@@ -17,4 +17,3 @@ Human readable blurb in 'Creative Commons — Attribution-NonCommercial-ShareAli
 Everybody reading the blurb thereby agrees to the disclaimer 'Creative Commons — Disclaimer — CC BY-NC-SA 4.0.png'
 
 Lawyers cannot read the blurb.
-
