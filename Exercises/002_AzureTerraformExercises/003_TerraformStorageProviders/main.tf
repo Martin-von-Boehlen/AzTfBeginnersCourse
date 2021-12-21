@@ -44,12 +44,27 @@ resource "azurerm_storage_account" "example" {
 
   network_rules {
     default_action             = "Deny"
-    ip_rules                   = ["100.0.0.1"]
+    ip_rules                   = ["95.222.239.45"]
     virtual_network_subnet_ids = [azurerm_subnet.example.id]
   }
 
   tags = {
     environment = "staging"
   }
+}
+
+resource "azurerm_storage_container" "example" {
+  name                  = "vhds"
+  storage_account_name  = azurerm_storage_account.example.name
+  container_access_type = "private"
+}
+
+
+resource "azurerm_storage_blob" "example" {
+  name                   = "my-awesome-content.zip"
+  storage_account_name   = azurerm_storage_account.example.name
+  storage_container_name = azurerm_storage_container.example.name
+  type                   = "Block"
+  source                 = "some-local-file.zip"
 }
 
