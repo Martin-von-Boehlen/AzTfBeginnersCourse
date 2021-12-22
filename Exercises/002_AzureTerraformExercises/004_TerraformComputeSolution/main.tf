@@ -44,7 +44,7 @@ resource "azurerm_public_ip" "nginxpublicip" {
     name                         = "nginx-pubIP"
     location                     = azurerm_resource_group.nginx.location
     resource_group_name          = azurerm_resource_group.nginx.name
-    allocation_method            = "Dynamic"
+    allocation_method            = "Static"
 
 #    tags = {
 #        environment = ""
@@ -82,7 +82,8 @@ resource "azurerm_network_security_group" "nginx-nsg" {
         source_port_range          = "*"
         destination_port_range     = "22"
         source_address_prefix      = "*"
-        destination_address_prefix = "*"
+     #   destination_address_prefix = "*"
+        destination_address_prefix = azurerm_public_ip.nginxpublicip.ip_address
     }
 
     security_rule {
@@ -110,7 +111,7 @@ resource "azurerm_network_security_group" "nginx-nsg" {
     }
 
     tags = {
-        environment = "Terraform Demo"
+        environment = "nginx"
     }
 }
 
