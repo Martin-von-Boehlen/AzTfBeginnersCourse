@@ -82,8 +82,7 @@ resource "azurerm_network_security_group" "nginx-nsg" {
         source_port_range          = "*"
         destination_port_range     = "22"
         source_address_prefix      = "*"
-     #   destination_address_prefix = "*"
-        destination_address_prefix = azurerm_public_ip.nginxpublicip.ip_address
+        destination_address_prefix = "*"
     }
 
     security_rule {
