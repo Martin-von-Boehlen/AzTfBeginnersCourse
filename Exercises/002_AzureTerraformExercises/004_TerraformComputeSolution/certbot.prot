@@ -1,0 +1,13 @@
+root@nginx-machine:~# cat /root/certbot-install/prot
+#
+# Protocol installing EFF's certbot
+# https://certbot.eff.org/instructions?ws=nginx&os=ubuntubionic
+#
+
+snap install core; sudo snap refresh core
+apt-get purge certbot
+snap install --classic certbot
+certbot --nginx
+
+# non-interactive
+certbot -n --nginx --domains mvb4711.westeurope.cloudapp.azure.com

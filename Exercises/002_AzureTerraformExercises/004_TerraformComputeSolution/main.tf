@@ -3,6 +3,11 @@ data "template_file" "nginx-vm-cloud-init" {
   template = file("install-nginx.sh")
 }
 
+data "template_file" "acme-vm-cloud-init" {
+  template = file("install-acme.sh")
+}
+
+
 # We strongly recommend using the required_providers block to set the
 # Azure Provider source and version being used
 
@@ -45,10 +50,7 @@ resource "azurerm_public_ip" "nginxpublicip" {
     location                     = azurerm_resource_group.nginx.location
     resource_group_name          = azurerm_resource_group.nginx.name
     allocation_method            = "Static"
-
-#    tags = {
-#        environment = ""
-#    }
+    domain_name_label            = "mvb4711"
 }
 
 resource "azurerm_network_interface" "nginx" {
@@ -114,14 +116,11 @@ resource "azurerm_network_security_group" "nginx-nsg" {
     }
 }
 
-
-
 # Connect the security group to the network interface
 resource "azurerm_network_interface_security_group_association" "nginx" {
     network_interface_id      = azurerm_network_interface.nginx.id
     network_security_group_id = azurerm_network_security_group.nginx-nsg.id
 }
-
 
 resource "azurerm_linux_virtual_machine" "nginx" {
   name                = "nginx-machine"
@@ -150,6 +149,6 @@ resource "azurerm_linux_virtual_machine" "nginx" {
     version   = "latest"
   }
   
-  custom_data = base64encode(data.template_file.nginx-vm-cloud-init.rendered)
+  custom_data = base64encode(data.template_file.nginx-vm-cloud-init.rendered) # +  base64encode(data.template_file.acme-vm-cloud-init.rendered)
 }
 
