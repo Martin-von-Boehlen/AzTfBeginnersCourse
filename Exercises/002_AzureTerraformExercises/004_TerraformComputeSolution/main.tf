@@ -3,11 +3,6 @@ data "template_file" "nginx-vm-cloud-init" {
   template = file("install-nginx.sh")
 }
 
-data "template_file" "acme-vm-cloud-init" {
-  template = file("install-acme.sh")
-}
-
-
 # We strongly recommend using the required_providers block to set the
 # Azure Provider source and version being used
 
@@ -149,6 +144,6 @@ resource "azurerm_linux_virtual_machine" "nginx" {
     version   = "latest"
   }
   
-  custom_data = base64encode(data.template_file.nginx-vm-cloud-init.rendered) # +  base64encode(data.template_file.acme-vm-cloud-init.rendered)
+  custom_data = base64encode(data.template_file.nginx-vm-cloud-init.rendered) 
 }
 
