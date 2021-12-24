@@ -61,6 +61,62 @@ resource "azurerm_network_interface" "nginx" {
   }
 }
 
+# Create Network Security Group and rule
+resource "azurerm_network_security_group" "nginx-nsg" {
+    name                = "nginxNSG"
+    location            = azurerm_resource_group.nginx.location
+    resource_group_name = azurerm_resource_group.nginx.name
+
+    # If no security group exists, global default is "allow"
+    # As soon as a NSG exists the global default changes to "deny"
+
+    security_rule {
+        name                       = "SSH"
+        priority                   = 1001
+        direction                  = "Inbound"
+        access                     = "Allow"
+        protocol                   = "Tcp"
+        source_port_range          = "*"
+        destination_port_range     = "22"
+        source_address_prefix      = "*"
+        destination_address_prefix = "*"
+    }
+
+    security_rule {
+        name                       = "HTTP"
+        priority                   = 1011
+        direction                  = "Inbound"
+        access                     = "Allow"
+        protocol                   = "Tcp"
+        source_port_range          = "*"
+        destination_port_range     = "80"
+        source_address_prefix      = "*"
+        destination_address_prefix = "*"
+    }
+
+    security_rule {
+        name                       = "HTTPS"
+        priority                   = 1021
+        direction                  = "Inbound"
+        access                     = "Allow"
+        protocol                   = "Tcp"
+        source_port_range          = "*"
+        destination_port_range     = "443"
+        source_address_prefix      = "*"
+        destination_address_prefix = "*"
+    }
+
+    tags = {
+        environment = "nginx"
+    }
+}
+
+# Connect the security group to the network interface
+resource "azurerm_network_interface_security_group_association" "nginx" {
+    network_interface_id      = azurerm_network_interface.nginx.id
+    network_security_group_id = azurerm_network_security_group.nginx-nsg.id
+}
+
 resource "azurerm_linux_virtual_machine" "nginx" {
   name                = "nginx-machine"
   resource_group_name = azurerm_resource_group.nginx.name
