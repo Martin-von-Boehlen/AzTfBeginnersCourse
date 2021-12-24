@@ -45,7 +45,6 @@ resource "azurerm_public_ip" "nginxpublicip" {
     location                     = azurerm_resource_group.nginx.location
     resource_group_name          = azurerm_resource_group.nginx.name
     allocation_method            = "Static"
-    domain_name_label            = "mvb4711"
 }
 
 resource "azurerm_network_interface" "nginx" {
