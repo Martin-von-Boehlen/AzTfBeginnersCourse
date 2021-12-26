@@ -1,5 +1,0 @@
-https://docs.microsoft.com/en-us/azure/developer/terraform/create-linux-virtual-machine-with-infrastructure
-
-neware of:
-https://azure.microsoft.com/en-us/pricing/details/virtual-machines/linux/
-
