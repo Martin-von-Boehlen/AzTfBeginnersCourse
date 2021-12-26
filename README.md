@@ -7,7 +7,7 @@ We first install a working software system with Azure-cli (az), Git, and Terrafo
 For Windows we utilize infamous Cygwin ;). Tested on Windows 10 and Windows Server 2019.
 Tested Linux versions are Ubuntu 18.04 LTS ans 20.04 LTS. Therefore, it should work on Debian Stretch.
 
-![Architecture Diagram](./002_Architecture.png)
+![Architecture Diagram](./Documentation/002_Architecture.png)
 
 ## Contributing
 Pull requests are welcome. For major changes, please open an issue first to discuss what you would like to change.
