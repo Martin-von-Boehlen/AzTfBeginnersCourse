@@ -6,7 +6,3 @@ output "azurerm_fqdn" {
   value = azurerm_public_ip.nginxpublicip.fqdn
 }
 
-output "azurerm_reverse_fqdn" {
-  value = azurerm_public_ip.nginxpublicip.reverse_fqdn
-}
-
