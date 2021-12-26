@@ -4,7 +4,7 @@ https://github.com/Martin-von-Boehlen/AzTfBeginnersCourse
 
 AzTfBeginnersCourse is a simple beginner's course to learn how to create Azure sites with Terraform.
 We first install a working software system with Azure-cli (az), Git, and Terraform.
-For Windows we utilize infamous Cygwin ;). Tested on Windows 10 and Windows Server 2019.
+For Windows we utilize glorious Cygwin. Tested on Windows 10 and Windows Server 2019.
 Tested Linux versions are Ubuntu 18.04 LTS and 20.04 LTS.
 
 ![Architecture Diagram](./Documentation/002_Architecture.png)
@@ -27,6 +27,6 @@ If you want to follow this course on your own, please do the following things:
  3. If you are not familiar with GitHub you may first peruse ./Exercises/001_GitHubExercises
  4. Go to ./Exercises/002_AzureTerraformExercises and read the Guide for first Exercise 001_SystemCheck.pdf
  5. Clone the exercise directory 001_SystemCheck to your local computer and modify according to Guide
- 6. Please do _not_ generate pull requests for your changes! In fact: Do your changes outside this repository's clone!
- 7. Please do _not_ generate pull requests!
- 8. Rinse and repeat
+ 6. Please do **not** generate pull requests for your changes! In fact: Do your changes outside this repository's clone!
+ 7. Please do **not** generate pull requests!
+ 8. Rinse and repeat with step #4. Using next exercise. 
