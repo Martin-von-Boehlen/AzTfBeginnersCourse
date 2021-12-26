@@ -122,9 +122,9 @@ sudo tee /etc/nginx/nginx.conf <<EOT
   }
 EOT
 
-sudo rm -f /etc/nginx/sites-available/default /etc/nginx/sites-enabled/default /etc/nginx/sites-enabled/mvb4712.westeurope.cloudapp.azure.com 
-sudo mkdir /var/www/mvb4712.westeurope.cloudapp.azure.com
-sudo tee /etc/nginx/sites-available/mvb4712.westeurope.cloudapp.azure.com <<EOT 
+sudo rm -f /etc/nginx/sites-available/default /etc/nginx/sites-enabled/default /etc/nginx/sites-enabled/<your_FQDN> 
+sudo mkdir /var/www/<your_FQDN>
+sudo tee /etc/nginx/sites-available/<your_FQDN> <<EOT 
   # Virtual Host configuration for 
   #
   # You can move that to a different file under sites-available/ and symlink that
@@ -132,9 +132,9 @@ sudo tee /etc/nginx/sites-available/mvb4712.westeurope.cloudapp.azure.com <<EOT
   #
   server {
 
-    server_name mvb4712.westeurope.cloudapp.azure.com;
+    server_name ;
 
-    root /var/www/mvb4712.westeurope.cloudapp.azure.com;
+    root /var/www/<your_FQDN>;
     index index.php;
 
     location / {
@@ -150,7 +150,7 @@ sudo tee /etc/nginx/sites-available/mvb4712.westeurope.cloudapp.azure.com <<EOT
       }   
   }
 EOT
-sudo ln -s /etc/nginx/sites-available/mvb4712.westeurope.cloudapp.azure.com /etc/nginx/sites-enabled/mvb4712.westeurope.cloudapp.azure.com
+sudo ln -s /etc/nginx/sites-available/<your_FQDN> /etc/nginx/sites-enabled/<your_FQDN>
 }
 
 # ********************************************************************************************************************************************
@@ -181,19 +181,19 @@ sudo systemctl restart nginx
 sudo snap install core && sudo snap refresh core
 sudo snap install --classic certbot
 sudo ln -s /snap/bin/certbot /usr/bin/certbot
-sudo /bin/sh -v -c "/usr/bin/certbot --test-cert --agree-tos --email mvb4711@gmail.com -n --nginx --domains mvb4712.westeurope.cloudapp.azure.com"
-# sudo /bin/sh -v -c "/usr/bin/certbot --agree-tos --email mvb4711@gmail.com -n --nginx --domains mvb4712.westeurope.cloudapp.azure.com"
+sudo /bin/sh -v -c "/usr/bin/certbot --test-cert --agree-tos --email <your_email>@somewhere -n --nginx --domains <your_FQDN>
+# sudo /bin/sh -v -c "/usr/bin/certbot --agree-tos --email <your_email>@somewhere -n --nginx --domains <your_FQDN> "
 sudo systemctl restart nginx
 #
 # ============ phpMyAdmin =============================
 #
 sudo sh -c "DEBIAN_FRONTEND=noninteractive apt-get -y install phpmyadmin"
-ln -s /usr/share/phpmyadmin /var/www/mvb4712.westeurope.cloudapp.azure.com/phpmyadmin
+ln -s /usr/share/phpmyadmin /var/www/<your_FQDN>/phpmyadmin
 configure_myphpadmin
 #
 # ugly patch to avoid error message for empty array with count()
 # echo sudo sed -i \"s/|\s*\((count(\$analyzed_sql_results\['select_expr'\]\)/| (\1)/g\" /usr/share/phpmyadmin/libraries/sql.lib.php
 sudo sed -i "s/|\s*\((count(\$analyzed_sql_results\['select_expr'\]\)/| (\1)/g" /usr/share/phpmyadmin/libraries/sql.lib.php
 #
-sudo mysql -haz304-mysql-srv.mysql.database.azure.com -usqladmin -pPa55w.rd1234 < /usr/share/phpmyadmin/sql/create_tables.sql 
+sudo mysql -h<your_DB_FQDN> -u<your_DB_USER> -p<your_DB_PWD> < /usr/share/phpmyadmin/sql/create_tables.sql 
 sudo systemctl restart nginx
