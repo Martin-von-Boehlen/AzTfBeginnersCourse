@@ -1,8 +1,6 @@
 #
-# Tools for your ~/bin can be dound in ./tools
+# Tools for your ~/bin can be found in ./tools
 #
-
-# Tools
 
 ## Setup
 Last lines in .bash_profile
