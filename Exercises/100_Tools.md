@@ -1,5 +1,5 @@
 #
-# Tools for your ~/bin can be found in ./tools
+# Tools for your ~/bin can be found in ./100_Tools
 #
 
 ## Setup
