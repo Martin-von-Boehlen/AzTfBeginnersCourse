@@ -13,11 +13,11 @@ Last lines in ~/.bashrc
  + . ~/bin/setNGINXhost.sh
 
 Tool in ~/bin   | Purpose
---------------- | -------------
-azmysql.sh      | Content Cell
-aznxlogin       | Content Cell
-gitlogin.sh     | Content Cell
-gitpush.sh      | Content Cell
-login.tf        | Content Cell
-setNGINXhost.sh | Content Cell
+--------------- | --------------------------------------
+azmysql.sh      | Client login to remote MySQL database
+aznxlogin       | Ssh into remote VM with nginx
+gitlogin.sh     | Login to github
+gitpush.sh      | Exec commit & push
+login.tf        | Login to azure-cli. **Works only after login to GUI** 
+setNGINXhost.sh | Source for variables
 
