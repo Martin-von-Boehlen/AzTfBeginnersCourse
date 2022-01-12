@@ -16,7 +16,7 @@ variable "nginx_fqdn" {
 }
 
 variable "mysqlsrv_dns_name" {
-  default = "haz304-mysql-srv.mysql.database.azure.com"
+  default = "az304-mysql-srv.mysql.database.azure.com"
 }
 
 variable "mysqlsrv_usr_name" {
@@ -24,7 +24,7 @@ variable "mysqlsrv_usr_name" {
 }
 
 variable "mysqlsrv_usr_pwd" {
-  default = "Pa55w.rd1234"
+  default = "JubjubBird1806!"
 }
 
 

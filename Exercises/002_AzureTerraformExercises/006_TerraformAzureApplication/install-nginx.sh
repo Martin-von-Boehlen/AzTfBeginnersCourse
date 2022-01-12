@@ -4,7 +4,14 @@
 # ********************************************************************************************************************************************
 
 export NGINX_FQDN="${nginx_fqdn}"
-echo "NGINX_FQDN=\'$NGINX_FQDN\'
+export DB_FQDN="${db_fqdn}"
+export DB_USER="${db_user}"
+export DB_PWD="${db_pwd}"
+
+echo "NGINX_FQDN='$NGINX_FQDN'"
+echo "DB_FQDN='$DB_FQDN'"
+echo "DB_USER='$DB_USER'"
+echo "DB_PWD='$DB_PWD'"
 
 # ************************************************************************
 configure_myphpadmin() {
@@ -31,14 +38,12 @@ EOT
 sudo tee /etc/phpmyadmin/config-db.php <<EOT
 <?php
   # !!! dbname is mandatory or login won't work!!!
-  # 
-  # mysql -haz304-mysql-srv.mysql.database.azure.com -usqladmin -pPa55w.rd1234 dbaz304
   #
-  \$dbuser='sqladmin';
-  \$dbpass='Pa55w.rd1234';
+  \$dbuser='$DB_USER';
+  \$dbpass='$DB_PWD';
   \$basepath='';
   \$dbname='phpmyadmin';
-  \$dbserver='az304-mysql-srv.mysql.database.azure.com';
+  \$dbserver='$DB_FQDN';
   \$dbport='3306';
   \$dbtype='mysql';
 ?>
@@ -136,7 +141,7 @@ sudo tee /etc/nginx/sites-available/$NGINX_FQDN <<EOT
   #
   server {
 
-    server_name ;
+    server_name $NGINX_FQDN;
 
     root /var/www/$NGINX_FQDN;
     index index.php;
@@ -185,8 +190,8 @@ sudo systemctl restart nginx
 sudo snap install core && sudo snap refresh core
 sudo snap install --classic certbot
 sudo ln -s /snap/bin/certbot /usr/bin/certbot
-sudo /bin/sh -v -c "/usr/bin/certbot --test-cert --agree-tos --email <your_email>@somewhere -n --nginx --domains $NGINX_FQDN
-# sudo /bin/sh -v -c "/usr/bin/certbot --agree-tos --email <your_email>@somewhere -n --nginx --domains $NGINX_FQDN "
+sudo /bin/sh -v -c "/usr/bin/certbot --test-cert --agree-tos --email <your_email>@somewhere -n --nginx --domains $NGINX_FQDN"
+# sudo /bin/sh -v -c "/usr/bin/certbot --agree-tos --email mvboehlen@googlemail.com -n --nginx --domains $NGINX_FQDN"
 sudo systemctl restart nginx
 #
 # ============ phpMyAdmin =============================
@@ -199,5 +204,5 @@ configure_myphpadmin
 # echo sudo sed -i \"s/|\s*\((count(\$analyzed_sql_results\['select_expr'\]\)/| (\1)/g\" /usr/share/phpmyadmin/libraries/sql.lib.php
 sudo sed -i "s/|\s*\((count(\$analyzed_sql_results\['select_expr'\]\)/| (\1)/g" /usr/share/phpmyadmin/libraries/sql.lib.php
 #
-# sudo mysql -h<your_DB_FQDN> -u<your_DB_USER> -p<your_DB_PWD> < /usr/share/phpmyadmin/sql/create_tables.sql 
+sudo mysql -h "$DB_FQDN" -u "$DB_USER" -p "$DB_PWD" < /usr/share/phpmyadmin/sql/create_tables.sql 
 sudo systemctl restart nginx

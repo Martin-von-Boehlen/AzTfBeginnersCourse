@@ -4,6 +4,9 @@ data "template_file" "nginx-vm-cloud-init" {
 
     vars = {
         nginx_fqdn = var.nginx_fqdn
+        db_fqdn    = var.mysqlsrv_dns_name
+        db_user    = var.mysqlsrv_usr_name
+        db_pwd     = var.mysqlsrv_usr_pwd
     }
 }
 
