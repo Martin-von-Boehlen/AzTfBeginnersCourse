@@ -11,6 +11,10 @@ variable "nginx_hostname" {
   default = "mvb4712"
 }
 
+variable "nginx_fqdn" {
+  default = "mvb4712.westeurope.cloudapp.azure.com"
+}
+
 variable "mysqlsrv_dns_name" {
   default = "haz304-mysql-srv.mysql.database.azure.com"
 }

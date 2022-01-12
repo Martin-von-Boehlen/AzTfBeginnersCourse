@@ -1,6 +1,10 @@
 # Bootstrapping Template File
 data "template_file" "nginx-vm-cloud-init" {
     template = file("install-nginx.sh")
+
+    vars = {
+        nginx_fqdn = var.nginx_fqdn
+    }
 }
 
 # We strongly recommend using the required_providers block to set the
@@ -156,6 +160,7 @@ resource "azurerm_linux_virtual_machine" "nginx" {
         sku       = "18.04-LTS"
         version   = "latest"
     }
+
     
     custom_data = base64encode(data.template_file.nginx-vm-cloud-init.rendered) 
 }
