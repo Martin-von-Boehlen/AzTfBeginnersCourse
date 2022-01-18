@@ -127,9 +127,12 @@ data "template_file" "maria-vm-cloud-init" {
     template = file("install-maria${count.index}.sh")
 
     vars = {
-        db_fqdn = join( "", [ var.maria_host_pre, "${count.index}", var.maria_fqdn_post ] ) 
+        iter       = count.index
+        db_fqdn    = join( "", [ var.maria_host_pre, "${count.index}", var.maria_fqdn_post ] )
         db_user    = var.maria_usr_name
         db_pwd     = var.maria_usr_pwd
+        db_rep_usr = var.maria_rep_name
+        db_rep_pwd = var.maria_rep_pwd
     }
 }
 

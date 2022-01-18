@@ -37,3 +37,11 @@ variable "maria_usr_pwd" {
   default = "blackmaria"
 }
 
+variable "maria_rep_name" {
+  default = "repl"
+}
+
+variable "maria_rep_pwd" {
+  default = "Hallabalu1806!"
+}
+
